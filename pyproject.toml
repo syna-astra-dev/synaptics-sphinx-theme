@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68.1.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "synaptics_sphinx_theme"
+version = "0.0.1.dev0"
+description = "The Sphinx theme for Synaptics documentation."
+
+dependencies = [
+    "sphinx_rtd_theme==2.0.0"
+]
+
+classifiers = [
+     "Private :: Do Not Upload"
+]
+
+[project.entry-points."sphinx.html_themes"]
+name_of_theme = "synaptics_sphinx_theme"
+
+[tool.setuptools]
+py-modules = ["synaptics_sphinx_theme"]
+include-package-data = true

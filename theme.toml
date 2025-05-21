@@ -1,0 +1,10 @@
+[theme]
+inherit = "sphinx_rtd_theme"
+
+stylesheets = [
+    "css/synaptics.css"
+]
+
+[options]
+logo_only = true
+style_nav_header_background = "#007dc3"

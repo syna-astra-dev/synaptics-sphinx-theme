@@ -1,0 +1,40 @@
+name: Build and Push Docker Image
+
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+
+concurrency:
+    group: build-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    build-and-push:
+        runs-on: ubuntu-latest
+
+        permissions:
+            contents: read
+            packages: write
+            attestations: write
+            id-token: write
+
+        steps:
+            - name: Checkout source code
+              uses: actions/checkout@v4
+
+            - name: Log in to GitHub Container Registry
+              uses: docker/login-action@v3
+              if: ${{ github.ref == 'refs/heads/main' }}
+              with:
+                    registry: ghcr.io
+                    username: ${{ github.actor }}
+                    password: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Build and push Docker image
+              uses: docker/build-push-action@v5
+              with:
+                  context: .
+                  push: ${{ github.ref == 'refs/heads/main' }}
+                  tags: ghcr.io/${{ github.repository }}/builder:latest
