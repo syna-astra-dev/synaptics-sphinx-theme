@@ -34,9 +34,18 @@ def setup_config(app, config):
 
     # force the theme to be the synaptics theme
     app.config.html_theme = "synaptics_sphinx_theme"
-    
+
+    # setup breathe to use the doxygen XML output found in _build/doxygen/xml
+    if os.path.exists('_build/doxygen/xml'):
+        app.config.breathe_projects['default'] = '_build/doxygen/xml'
+        app.config.breathe_default_project = 'default'
+
 
 def setup(app):
+
+    # add common extensions for convenience
+    app.setup_extension('sphinxcontrib.plantuml')
+    app.setup_extension('breathe')
 
     # exclude README.rst from the build by default    
     app.config.exclude_patterns += ["README.rst"]
@@ -52,3 +61,6 @@ def setup(app):
 
     # register theme
     app.add_html_theme('synaptics_sphinx_theme', Path(__file__).resolve().parent)
+
+    # add custom javascript
+    app.add_js_file('js/synaptics.js')

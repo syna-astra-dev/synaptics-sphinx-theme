@@ -8,7 +8,9 @@ version = "0.0.1.dev0"
 description = "The Sphinx theme for Synaptics documentation."
 
 dependencies = [
-    "sphinx_rtd_theme==2.0.0"
+    "sphinx_rtd_theme==2.0.0",
+    "sphinxcontrib-plantuml==0.30",
+    "breathe==4.35.0"
 ]
 
 classifiers = [
