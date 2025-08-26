@@ -40,15 +40,18 @@ def setup_config(app, config):
         app.config.breathe_projects['default'] = '_build/doxygen/xml'
         app.config.breathe_default_project = 'default'
 
+    # setup myst
+    app.config.myst_enable_extensions.add("colon_fence")
 
 def setup(app):
 
     # add common extensions for convenience
     app.setup_extension('sphinxcontrib.plantuml')
     app.setup_extension('breathe')
+    app.setup_extension('myst_parser')
 
     # exclude README.rst from the build by default    
-    app.config.exclude_patterns += ["README.rst"]
+    app.config.exclude_patterns += ["README.rst", "README.md"]
 
     app.connect('config-inited', setup_config)
 
