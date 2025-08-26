@@ -2,6 +2,8 @@
 
 set -e
 
+DOC_DIR="${1:-.}"
+
 mkdir -p _build
 
 if [[ -f Doxyfile ]]; then
@@ -17,7 +19,7 @@ fi
 
 echo Building sphinx...
 
-sphinx-build . _build/html
+sphinx-build ${DOC_DIR} _build/html
 
 echo Updating permission of files...
 
