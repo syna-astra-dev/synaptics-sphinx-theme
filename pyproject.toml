@@ -22,5 +22,12 @@ classifiers = [
 name_of_theme = "synaptics_sphinx_theme"
 
 [tool.setuptools]
-py-modules = ["synaptics_sphinx_theme"]
+packages = ["synaptics_sphinx_theme"]
 include-package-data = true
+
+[tool.setuptools.package-data]
+synaptics_sphinx_theme = [ 
+    "static/js/*.js",
+    "static/css/*.css",
+    "theme.toml"
+]
