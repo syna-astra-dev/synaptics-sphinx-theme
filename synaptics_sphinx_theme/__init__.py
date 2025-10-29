@@ -49,6 +49,12 @@ def setup(app):
     app.setup_extension('sphinxcontrib.plantuml')
     app.setup_extension('breathe')
     app.setup_extension('myst_parser')
+    app.setup_extension('sphinx_copybutton')
+
+    # Configure sphinx-copybutton so that when users copy code blocks,
+    # any leading shell prompt ('$ ') is automatically removed from the copied text.
+    app.config.copybutton_prompt_text = r"\$ "
+    app.config.copybutton_prompt_is_regexp = True
 
     # exclude README.rst from the build by default    
     app.config.exclude_patterns += ["README.rst", "README.md"]
